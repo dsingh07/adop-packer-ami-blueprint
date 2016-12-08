@@ -1,0 +1,47 @@
+{
+  "variables": {
+    "aws_access_key": "{{env `AWS_ACCESS_KEY`}}",
+    "aws_secret_key": "{{env `AWS_SECRET_KEY`}}",
+  },
+  "builders": [
+    {
+    "type": "amazon-ebs",
+    "ssh_pty": "true",
+    "access_key": "{{user `aws_access_key`}}",
+    "secret_key": "{{user `aws_secret_key`}}",
+    "region": "eu-west-1",
+    "ami_users": [
+        "###AWS_ACCOUNT_IDS###"
+    ],
+    "ami_regions": [
+        "us-east-1",
+        "us-west-1",
+        "us-west-2",
+        "eu-central-1",
+        "ap-southeast-2"
+    ],
+    "source_ami": "###AWS_SOURCE_AMI###",
+    "instance_type": "t2.micro",
+    "ssh_username": "###INSTANCE_USER###",
+    "ssh_timeout": "5m",
+    "ami_name": "ADOP-{{isotime \"02-Jan-06\"}}_{{isotime \"Mon 03-05-04\"}}",
+    "vpc_id": "###AWS_VPC_ID###",
+    "subnet_id": "###AWS_SUBNET_ID###",
+    } ],
+"provisioners": [{
+    "type": "shell",
+    "execute_command" : "echo 'df -h' | {{ .Vars }} sudo -E -S sh '{{ .Path }}'",
+    "inline": [
+    "sleep 30",
+    "sudo su root",
+    "set -e",
+    "echo '=========================== Installing Docker & Yum Packages ==========================='\n",
+    "curl -fsSL https://get.docker.com/ | sed 's/docker-engine/docker-engine-1.10.3-1.el7.centos/' | sh\n",
+    "yum -y install wget git lvm2\n",
+    "echo '=========================== Installing Docker-Compose =========================='\n",
+    "curl -L https://github.com/docker/compose/releases/download/1.8.1/docker-compose-`uname -s`-`uname -m` > /usr/bin/docker-compose\n",
+    "chmod +x /usr/bin/docker-compose\n",
+    "rm -f /var/log/cloud-init-output.log"
+  ]      
+}]      
+}
