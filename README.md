@@ -16,6 +16,5 @@ To execute the build of this template, you will need [Packer](https://www.packer
 After verifying your installation, simply run the command  ```build -debug -var aws_access_key=${AWS_ACCESS_KEY} -var aws_secret_key=${AWS_SECRET_KEY} BLUEPRINT_BAKE_AMI.json``` where AWS_ACCESS_KEY and AWS_SECRET_KEY are your defined as environment variables for your AWS API keys respectively.
 
 ## Things to note
-By default, this template installs Docker, docker-compose and a few other yum packages. This will need updating depending on whatever you want to include in your AMI, and if your source AMI is coming from a different OS thus requiring a different install command.
-
-Note also that the AMI by default assumes your source AMI is in the eu-west-1 region, and publishes to 5 other regions.
+* By default, this template installs Docker, docker-compose and a few other yum packages. This will need updating depending on whatever you want to include in your AMI, and if your source AMI is coming from a different OS thus requiring a different install command.
+* Note also that the AMI by default assumes your source AMI is in the eu-west-1 region, and publishes to 5 other regions.
