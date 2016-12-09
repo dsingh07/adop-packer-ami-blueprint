@@ -1,7 +1,7 @@
 {
   "variables": {
     "aws_access_key": "{{env `AWS_ACCESS_KEY`}}",
-    "aws_secret_key": "{{env `AWS_SECRET_KEY`}}",
+    "aws_secret_key": "{{env `AWS_SECRET_KEY`}}"
   },
   "builders": [
     {
@@ -26,7 +26,7 @@
     "ssh_timeout": "5m",
     "ami_name": "ADOP-{{isotime \"02-Jan-06\"}}_{{isotime \"Mon 03-05-04\"}}",
     "vpc_id": "###AWS_VPC_ID###",
-    "subnet_id": "###AWS_SUBNET_ID###",
+    "subnet_id": "###AWS_SUBNET_ID###"
     } ],
 "provisioners": [{
     "type": "shell",
