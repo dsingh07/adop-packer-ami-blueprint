@@ -17,4 +17,3 @@ After verifying your installation, simply run the command  ```build -debug -var 
 
 ## Things to note
 * By default, this template installs Docker, docker-compose and a few other yum packages. This will need updating depending on whatever you want to include in your AMI, and if your source AMI is coming from a different OS thus requiring a different install command.
-* Note also that the AMI by default assumes your source AMI is in the eu-west-1 region, and publishes to 5 other regions.
